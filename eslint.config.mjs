@@ -12,10 +12,7 @@ export default tseslint.config(
   {
     files: ['**/*.ts'],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
+      globals: globals.browser,
     },
     rules: {
       '@typescript-eslint/consistent-type-imports': 'error',
@@ -26,6 +23,12 @@ export default tseslint.config(
           varsIgnorePattern: '^_',
         },
       ],
+    },
+  },
+  {
+    files: ['*.config.{ts,mjs}'],
+    languageOptions: {
+      globals: globals.node,
     },
   },
   prettier,
