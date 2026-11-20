@@ -1,0 +1,44 @@
+:root {
+  --parchment: #f1e6d0;
+  --parchment-2: #e6d6b8;
+  --surface: #fbf5e8;
+  --ink: #161214;
+  --text: #2a1e1e;
+  --text-muted: #6b5a52;
+  --cream: #f1e6d0;
+  --crimson: #8e1b1e;
+  --crimson-dark: #5e0f13;
+  --gold: #b8892b;
+  --gold-light: #e0b654;
+  --border: #d2bf9c;
+  --success: #46691f;
+
+  --cat-healing: #b8322b;
+  --cat-magic: #4f4fb8;
+  --cat-cursed: #5e8a2a;
+  --cat-love: #c2507e;
+
+  /* Цвет рамки фокуса. На тёмных блоках переопределяется на светлый. */
+  --focus: var(--ink);
+
+  --font-caps: 'Cormorant SC', 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+
+  --gutter: 80px;
+  --content-width: 1280px;
+  --radius: 4px;
+  --shadow: 0 6px 18px rgb(42 26 20 / 0.1);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --gutter: 16px;
+  }
+}
