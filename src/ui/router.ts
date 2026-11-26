@@ -10,7 +10,7 @@ export interface Page {
   destroy(): void;
 }
 
-type PageFactory = ((store: Store<AppState>) => Page) | (() => void);
+type PageFactory = (store: Store<AppState>) => Page;
 
 const PAGES: Record<Route, PageFactory> = {
   about: createAboutPage,
@@ -33,15 +33,10 @@ export function initRouter(root: HTMLElement, store: Store<AppState>): void {
       return;
     }
     currentPage?.destroy();
-    currentPage = PAGES[route](store) ?? null;
+    currentPage = PAGES[route](store);
     currentRoute = route;
 
-    if (currentPage) {
-      root.replaceChildren(currentPage.element);
-    } else {
-      root.replaceChildren();
-    }
-
+    root.replaceChildren(currentPage.element);
     document.title = TITLES[route];
 
     if (isNavigation) {
