@@ -253,19 +253,13 @@
 }
 
 .member__avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-shrink: 0;
   width: 120px;
   height: 120px;
   border: 3px solid var(--gold);
   border-radius: 50%;
   background: var(--crimson);
-  color: var(--cream);
-  font-family: var(--font-caps);
-  font-weight: 700;
-  font-size: 48px;
+  object-fit: cover;
 }
 
 .member__info {
@@ -308,6 +302,11 @@
   color: var(--crimson);
 }
 
+.member__issue {
+  font-weight: 600;
+  color: var(--crimson);
+}
+
 .member__link {
   align-self: flex-start;
   font-weight: 500;
@@ -344,7 +343,6 @@
     width: 72px;
     height: 72px;
     border-width: 2px;
-    font-size: 30px;
   }
 
   .member__name {

@@ -1,5 +1,5 @@
 import { FEATURED_IDS, PRODUCTS } from '../../data/products';
-import { TEAM, type TeamMember } from '../../data/team';
+import { REPO_URL, TEAM, type Contribution, type TeamMember } from '../../data/team';
 import { addToCart, getQuantity } from '../../logic/cart';
 import { toHash } from '../../logic/route';
 import type { Store } from '../../state/store';
@@ -67,21 +67,42 @@ function createAboutSection(): HTMLElement {
   ]);
 }
 
+function createContributionItem({ text, issue }: Contribution): HTMLElement {
+  const label =
+    issue === undefined
+      ? el('span', { text })
+      : el('span', {}, [
+          `${text} `,
+          el('a', {
+            class: 'member__issue',
+            text: `#${issue}`,
+            attrs: {
+              href: `${REPO_URL}/issues/${issue}`,
+              target: '_blank',
+              rel: 'noopener',
+              'aria-label': `Задача ${issue}: ${text}`,
+            },
+          }),
+        ]);
+  return el('li', {}, [star(9), label]);
+}
+
 function createMemberCard(member: TeamMember): HTMLElement {
   return el('article', { class: 'member' }, [
-    el('span', {
+    el('img', {
       class: 'member__avatar',
-      text: member.monogram,
-      attrs: { 'aria-hidden': 'true' },
+      attrs: {
+        src: `https://github.com/${member.github}.png?size=240`,
+        alt: '',
+        width: 120,
+        height: 120,
+        loading: 'lazy',
+      },
     }),
     el('div', { class: 'member__info' }, [
       el('h3', { class: 'member__name', text: member.name }),
       el('p', { class: 'member__role', text: member.role }),
-      el(
-        'ul',
-        { class: 'member__list' },
-        member.contribution.map((item) => el('li', {}, [star(9), el('span', { text: item })])),
-      ),
+      el('ul', { class: 'member__list' }, member.contribution.map(createContributionItem)),
       el('a', {
         class: 'member__link',
         text: `github.com/${member.github}`,
